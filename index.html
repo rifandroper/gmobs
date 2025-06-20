@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GMOBS Whitelist Checker</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #0d0d0d;
+            color: white;
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ganti nama file banner jika berbeda -->
+    <img src="gmobs_banner_web.jpg" alt="GMOBS Banner">
+
+    <h1>GMOBS Whitelist Checker</h1>
+    <input type="text" id="walletInput" placeholder="Enter your wallet address">
+    <button onclick="checkWhitelist()">Check</button>
+    <div id="result"></div>
+
+    <script>
+        // Contoh: 10 wallet pertama sebagai GMOBS, 10 berikutnya sebagai FCFS
+        const gmobs = [
+            "0x3af12d02a85e63d86860d16fcfeee4a48d8378c6",
+            "0xB9AbF6b6D3fB923Fb60a505a07291960baee16E3",
+            "0xc986a7b90beb414eb054951df3465b99ee082e03",
+            "0xdc1a9265bff92e79cc81dfe68a1570e63c21b0a5",
+            "0x3f988360255a0197b7df569076b2513757162502",
+            "0x089da3a56d0ee629d83cc301d1722ab94fb673e7",
+            "0xD6656d4E8F2E32Ee5d80f19937cC4dFca35E1a3a",
+            "0xF744b161F6Cf24a8743F9f43DBd162636221E175",
+            "0xce6d965ea422579ded450095e92d2d7ca0028e4c",
+            "0x711f6A5E53C2389d72E9Ee5A6ADE065203D441D3"
+        ];
+        const fcfs = [
+            /* Masukkan 10 wallet berikutnya di sini */
+        ];
+
+        function checkWhitelist() {
+            const input = document.getElementById("walletInput").value.trim().toLowerCase();
+            const result = document.getElementById("result");
+            if (gmobs.map(w => w.toLowerCase()).includes(input)) {
+                result.textContent = "✅ GMOBS List";
+                result.style.color = "lime";
+            } else if (fcfs.map(w => w.toLowerCase()).includes(input)) {
+                result.textContent = "✅ FCFS List";
+                result.style.color = "cyan";
+            } else {
+                result.textContent = "❌ Not Whitelisted";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>
